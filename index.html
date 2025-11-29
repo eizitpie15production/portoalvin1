@@ -205,48 +205,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 		
-		/* --- 6. RESPONSIVE (Khusus Tampilan HP) --- */
-        @media (max-width: 768px) {
-            /* Navbar jadi tumpuk ke bawah */
-            header {
-                flex-direction: column;
-                padding: 15px 20px;
-            }
-
-            nav ul {
-                margin-top: 15px;
-                gap: 15px;
-                justify-content: center;
-                flex-wrap: wrap; /* Menu turun baris jika sempit */
-            }
-
-            /* Tulisan Hero mengecil agar muat */
-            .hero {
-                height: auto; /* Tinggi menyesuaikan isi */
-                padding: 100px 20px 60px 20px; /* Tambah padding atas */
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 36px; /* Ukuran font dikurangi */
-            }
-
-            .btn-green {
-                width: 100%; /* Tombol jadi lebar penuh */
-                box-sizing: border-box;
-            }
-
-            /* Grid layanan jadi 2 kolom (kiri-kanan) */
-            .services {
-                padding: 40px 20px;
-                margin-top: -30px;
-            }
-
-            .service-grid {
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px;
-            }
-        }
+		
 
     </style>
 </head>
