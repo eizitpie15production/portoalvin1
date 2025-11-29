@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gojek Clone - Professional Edition</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. SETTING DASAR (Global Variables & Reset) --- */
+        :root {
+            --gojek-green: #00AA13;
+            --gojek-green-dark: #00880f;
+            --dark-text: #1C1C1C;
+            --gray-text: #4A4A4A;
+            --light-bg: #FFFFFF;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            --hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-text);
+            background-color: #FAFAFA; /* Latar belakang sedikit abu-abu */
+        }
+
+        /* --- 2. NAVBAR (Menu Atas) --- */
+        header {
+            background-color: rgba(28, 28, 28, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gojek-green);
+        }
+
+        /* --- 3. HERO SECTION (Banner Utama) --- */
+        .hero {
+            /* Gambar latar belakang dengan overlay gelap */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeIn Up 1s ease-out; /* Animasi muncul */
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* --- 4. SERVICES SECTION (Grid Layanan) --- */
+        .services {
+            padding: 80px 80px;
+            background-color: var(--light-bg);
+            border-radius: 40px 40px 0 0; /* Lengkungan khas */
+            margin-top: -60px; /* Overlap ke atas Hero */
+            position: relative;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .section-subtitle {
+            color: var(--gray-text);
+            font-size: 16px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 35px 20px;
+            border-radius: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #F0F0F0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(0, 170, 19, 0.3);
+        }
+
+        .icon-box {
+            font-size: 42px;
+            margin-bottom: 20px;
+            background-color: #E8F5E9;
+            width: 80px;
+            height: 80px;
+            display: flex;           /* Flexbox untuk menengahkan emoji */
+            align-items: center;     /* Vertikal center */
+            justify-content: center; /* Horizontal center */
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover .icon-box {
+            transform: scale(1.1); /* Ikon membesar sedikit saat hover */
+            background-color: #C8E6C9;
+        }
+
+        .service-card p {
+            font-weight: 700;
+            margin: 0;
+            font-size: 16px;
+            color: var(--dark-text);
+        }
+
+        /* --- 5. BUTTONS --- */
+        .btn-green {
+            background-color: var(--gojek-green);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 170, 19, 0.4);
+        }
+
+        .btn-green:hover {
+            background-color: var(--gojek-green-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Animasi Sederhana */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+		
+		/* --- 6. RESPONSIVE (Khusus Tampilan HP) --- */
+        @media (max-width: 768px) {
+            /* Navbar jadi tumpuk ke bawah */
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 15px;
+                justify-content: center;
+                flex-wrap: wrap; /* Menu turun baris jika sempit */
+            }
+
+            /* Tulisan Hero mengecil agar muat */
+            .hero {
+                height: auto; /* Tinggi menyesuaikan isi */
+                padding: 100px 20px 60px 20px; /* Tambah padding atas */
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 36px; /* Ukuran font dikurangi */
+            }
+
+            .btn-green {
+                width: 100%; /* Tombol jadi lebar penuh */
+                box-sizing: border-box;
+            }
+
+            /* Grid layanan jadi 2 kolom (kiri-kanan) */
+            .services {
+                padding: 40px 20px;
+                margin-top: -30px;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Gojek</div>
+        <nav>
+            <ul>
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Gabung Jadi Mitra</a></li>
+                <li><a href="#">Karir</a></li>
+                <li><a href="#">Perusahaan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pasti ada jalan,<br>pasti ada Gojek.</h1>
+            <p>Aplikasi super app untuk semua kebutuhanmu. Mulai dari transportasi, pesan makan, hingga kirim paket.</p>
+            <br>
+            <a href="#" class="btn-green">Download Sekarang</a>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="section-header">
+            <h2 class="section-title">Kenali Layanan Kami</h2>
+            <p class="section-subtitle">Solusi untuk setiap kebutuhanmu sehari-hari</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon-box">🛵</div>
+                <p>GoRide</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box">🚗</div>
+                <p>GoCar</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box">🍔</div>
+                <p>GoFood</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box">📦</div>
+                <p>GoSend</p>
+            </div>
+             <div class="service-card">
+                <div class="icon-box">🛒</div>
+                <p>GoMart</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
